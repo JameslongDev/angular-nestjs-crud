@@ -1,8 +1,14 @@
-<nav class="navbar">
-  <a routerLink="/employees" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Employee List</a>
-  <a routerLink="/employees/new" routerLinkActive="active">Add New Employee</a>
+<nav class="bg-blue-700 p-4 text-white flex justify-center space-x-6 shadow-md">
+  <a routerLink="/employees" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+     class="text-white hover:bg-blue-600 px-4 py-2 rounded-lg text-lg font-semibold transition duration-300 ease-in-out">
+    Employee List
+  </a>
+  <a routerLink="/employees/new" routerLinkActive="active"
+     class="text-white hover:bg-blue-600 px-4 py-2 rounded-lg text-lg font-semibold transition duration-300 ease-in-out">
+    Add New Employee
+  </a>
 </nav>
-
-<div class="container">
+<br>
+<div class="container mx-auto p-6 bg-white shadow-lg rounded-lg mt-8">
   <router-outlet></router-outlet>
 </div>

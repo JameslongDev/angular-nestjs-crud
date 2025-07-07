@@ -1,39 +1,45 @@
-<h2>Employee List</h2>
+<h2 class="text-3xl font-bold mb-6 text-gray-800">Employee List</h2>
 
-<button routerLink="/employees/new" class="add-button">Add New Employee</button>
+<button routerLink="/employees/new" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out mb-6">
+  Add New Employee
+</button>
 
 <div *ngIf="employees.length > 0; else noEmployees">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Job Title</th>
-        <th>Salary</th>
-        <th>Department</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let employee of employees">
-        <td>{{ employee.id }}</td>
-        <td>{{ employee.firstName }}</td>
-        <td>{{ employee.lastName }}</td>
-        <td>{{ employee.email }}</td>
-        <td>{{ employee.jobTitle }}</td>
-        <td>{{ employee.salary | currency:'USD':'symbol':'1.2-2' }}</td> <td>{{ employee.department }}</td>
-        <td>
-          <button [routerLink]="['/employees', employee.id]">View</button>
-          <button (click)="editEmployee(employee.id)">Edit</button>
-          <button (click)="deleteEmployee(employee.id)" class="delete-button">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="overflow-x-auto"> <table class="min-w-full bg-white border border-gray-300 shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="py-3 px-4 border-b border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
+          <th class="py-3 px-4 border-b border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">First Name</th>
+          <th class="py-3 px-4 border-b border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Last Name</th>
+          <th class="py-3 px-4 border-b border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Email</th>
+          <th class="py-3 px-4 border-b border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Job Title</th>
+          <th class="py-3 px-4 border-b border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Salary</th>
+          <th class="py-3 px-4 border-b border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Department</th>
+          <th class="py-3 px-4 border-b border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees" class="hover:bg-gray-50 transition duration-150 ease-in-out">
+          <td class="py-3 px-4 border-b border-gray-300 text-sm text-gray-700">{{ employee.id }}</td>
+          <td class="py-3 px-4 border-b border-gray-300 text-sm text-gray-700">{{ employee.firstName }}</td>
+          <td class="py-3 px-4 border-b border-gray-300 text-sm text-gray-700">{{ employee.lastName }}</td>
+          <td class="py-3 px-4 border-b border-gray-300 text-sm text-gray-700">{{ employee.email }}</td>
+          <td class="py-3 px-4 border-b border-gray-300 text-sm text-gray-700">{{ employee.jobTitle }}</td>
+          <td class="py-3 px-4 border-b border-gray-300 text-sm text-gray-700">{{ employee.salary | currency:'USD':'symbol':'1.2-2' }}</td>
+          <td class="py-3 px-4 border-b border-gray-300 text-sm text-gray-700">{{ employee.department }}</td>
+          <td class="py-3 px-4 border-b border-gray-300 text-sm">
+            <div class="flex items-center space-x-2">
+              <button [routerLink]="['/employees', employee.id]" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md text-xs transition">View</button>
+              <button (click)="editEmployee(employee.id)" class="bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-3 rounded-md text-xs transition">Edit</button>
+              <button (click)="deleteEmployee(employee.id)" class="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-md text-xs transition">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <ng-template #noEmployees>
-  <p>No employees found. Please add a new employee.</p>
+  <p class="text-gray-600 text-lg mt-4">No employees found. Please add a new employee.</p>
 </ng-template>
