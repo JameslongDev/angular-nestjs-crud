@@ -1,0 +1,65 @@
+<h2>{{ isEditMode ? 'Edit Employee' : 'Add New Employee' }}</h2>
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+  <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input id="firstName" type="text" formControlName="firstName">
+    <div *ngIf="employeeForm.get('firstName')?.invalid && (employeeForm.get('firstName')?.dirty || employeeForm.get('firstName')?.touched)" class="error-message">
+      <div *ngIf="employeeForm.get('firstName')?.errors?.['required']">First Name is required.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input id="lastName" type="text" formControlName="lastName">
+    <div *ngIf="employeeForm.get('lastName')?.invalid && (employeeForm.get('lastName')?.dirty || employeeForm.get('lastName')?.touched)" class="error-message">
+      <div *ngIf="employeeForm.get('lastName')?.errors?.['required']">Last Name is required.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email">
+    <div *ngIf="employeeForm.get('email')?.invalid && (employeeForm.get('email')?.dirty || employeeForm.get('email')?.touched)" class="error-message">
+      <div *ngIf="employeeForm.get('email')?.errors?.['required']">Email is required.</div>
+      <div *ngIf="employeeForm.get('email')?.errors?.['email']">Please enter a valid email address.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="phoneNumber">Phone Number:</label>
+    <input id="phoneNumber" type="text" formControlName="phoneNumber">
+  </div>
+
+  <div class="form-group">
+    <label for="hireDate">Hire Date:</label>
+    <input id="hireDate" type="date" formControlName="hireDate">
+    <div *ngIf="employeeForm.get('hireDate')?.invalid && (employeeForm.get('hireDate')?.dirty || employeeForm.get('hireDate')?.touched)" class="error-message">
+      <div *ngIf="employeeForm.get('hireDate')?.errors?.['required']">Hire Date is required.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="jobTitle">Job Title:</label>
+    <input id="jobTitle" type="text" formControlName="jobTitle">
+  </div>
+
+  <div class="form-group">
+    <label for="salary">Salary:</label>
+    <input id="salary" type="number" formControlName="salary">
+    <div *ngIf="employeeForm.get('salary')?.invalid && (employeeForm.get('salary')?.dirty || employeeForm.get('salary')?.touched)" class="error-message">
+      <div *ngIf="employeeForm.get('salary')?.errors?.['required']">Salary is required.</div>
+      <div *ngIf="employeeForm.get('salary')?.errors?.['min']">Salary must be a positive number.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="department">Department:</label>
+    <input id="department" type="text" formControlName="department">
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="employeeForm.invalid">{{ isEditMode ? 'Update Employee' : 'Create Employee' }}</button>
+    <button type="button" (click)="goBack()">Cancel</button>
+  </div>
+</form>

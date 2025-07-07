@@ -1,0 +1,39 @@
+<h2>Employee List</h2>
+
+<button routerLink="/employees/new" class="add-button">Add New Employee</button>
+
+<div *ngIf="employees.length > 0; else noEmployees">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Job Title</th>
+        <th>Salary</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.firstName }}</td>
+        <td>{{ employee.lastName }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.jobTitle }}</td>
+        <td>{{ employee.salary | currency:'USD':'symbol':'1.2-2' }}</td> <td>{{ employee.department }}</td>
+        <td>
+          <button [routerLink]="['/employees', employee.id]">View</button>
+          <button (click)="editEmployee(employee.id)">Edit</button>
+          <button (click)="deleteEmployee(employee.id)" class="delete-button">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noEmployees>
+  <p>No employees found. Please add a new employee.</p>
+</ng-template>
