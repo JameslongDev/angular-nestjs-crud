@@ -1,0 +1,24 @@
+<div class="employee-detail-container" *ngIf="employee; else loadingOrNotFound">
+  <h2>Employee Details: {{ employee.firstName }} {{ employee.lastName }}</h2>
+
+  <div class="detail-card">
+    <p><strong>ID:</strong> {{ employee.id }}</p>
+    <p><strong>First Name:</strong> {{ employee.firstName }}</p>
+    <p><strong>Last Name:</strong> {{ employee.lastName }}</p>
+    <p><strong>Email:</strong> {{ employee.email }}</p>
+    <p><strong>Phone Number:</strong> {{ employee.phoneNumber || 'N/A' }}</p>
+    <p><strong>Hire Date:</strong> {{ employee.hireDate | date:'longDate' }}</p> <p><strong>Job Title:</strong> {{ employee.jobTitle || 'N/A' }}</p>
+    <p><strong>Salary:</strong> {{ employee.salary | currency:'USD':'symbol':'1.2-2' }}</p> <p><strong>Department:</strong> {{ employee.department || 'N/A' }}</p>
+    <p><strong>Created At:</strong> {{ employee.createdAt | date:'medium' }}</p>
+    <p><strong>Updated At:</strong> {{ employee.updatedAt | date:'medium' }}</p>
+  </div>
+
+  <div class="actions">
+    <button (click)="editEmployee()">Edit</button>
+    <button (click)="goBack()" class="back-button">Back to List</button>
+  </div>
+</div>
+
+<ng-template #loadingOrNotFound>
+  <p>Loading employee details or employee not found...</p>
+</ng-template>
